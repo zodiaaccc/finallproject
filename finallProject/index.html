@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Traveland - Откройте мир заново</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylesOfProject.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page-container header-content">
+        <a href="#home" class="brand-logo">
+            <i class="fas fa-map-marked-alt brand-logo__icon"></i>
+            Traveland
+        </a>
+
+        <nav class="main-navigation">
+            <ul>
+                <li><a href="#home" class="navigation-link navigation-link--active">Главная</a></li>
+                <li><a href="#features" class="navigation-link">Преимущества</a></li>
+                <li><a href="#destinations" class="navigation-link">Направления</a></li>
+                <li><a href="#feedback" class="navigation-link">Отзывы</a></li>
+                <li><a href="#contact" class="navigation-link">Контакты</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-authentication">
+            <button class="action-button action-button--outline" onclick="window.location.href='fireBaseApp.html'">Войти</button>
+            <button class="action-button action-button--primary">Регистрация</button>
+        </div>
+    </div>
+</header>
+
+
+<section class="main-banner" id="home">
+    <div class="page-container">
+        <div class="banner-content">
+            <h1 class="banner-headline">Откройте мир заново с Traveland</h1>
+            <p class="banner-description">Мы предлагаем уникальные путешествия по всему миру. Откройте для себя новые культуры, насладитесь природными красотами и создайте воспоминания на всю жизнь.</p>
+            <div class="banner-actions">
+                <a href="#destinations" class="action-button action-button--primary">Начать путешествие</a>
+                <a href="#features" class="action-button action-button--outline">Узнать больше</a>
+            </div>
+        </div>
+        <div class="banner-visual">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Путешественник">
+        </div>
+    </div>
+</section>
+
+
+<section class="features-section" id="features">
+    <div class="page-container">
+        <div class="section-heading">
+            <h2 class="section-heading__title">Почему выбирают нас</h2>
+            <p class="section-heading__subtitle">Мы предлагаем лучший сервис для вашего идеального путешествия</p>
+        </div>
+
+        <div class="features-container">
+            <div class="feature-item">
+                <div class="feature-icon-container">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h3 class="feature-item__title">Глобальное покрытие</h3>
+                <p class="feature-item__description">Более 100 направлений по всему миру для вашего идеального отдыха</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon-container">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-item__title">Безопасность</h3>
+                <p class="feature-item__description">Ваша безопасность - наш приоритет. Все партнеры проверены и сертифицированы</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon-container">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3 class="feature-item__title">Лучшие цены</h3>
+                <p class="feature-item__description">Гарантия лучшей цены или возврат разницы. Без скрытых платежей</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon-container">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-item__title">Поддержка 24/7</h3>
+                <p class="feature-item__description">Наша команда поддержки всегда готова помочь в любой точке мира</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="destinations-section" id="destinations">
+    <div class="page-container">
+        <div class="section-heading">
+            <h2 class="section-heading__title">Популярные направления</h2>
+            <p class="section-heading__subtitle">Откройте для себя самые захватывающие места на планете</p>
+        </div>
+
+        <div class="destinations-container">
+            <div class="destination-card">
+                <div class="destination-image-container">
+                    <img src="https://abstour.by/upload/iblock/dea/dea07a1d596e0b86eb4683a069a02b6b.jpg" alt="Бали, Индонезия">
+                </div>
+                <div class="destination-details">
+                    <h3 class="destination-name">Бали</h3>
+                    <div class="destination-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Индонезия</span>
+                    </div>
+                    <div class="destination-pricing">
+                        <div class="destination-price">$1,200</div>
+                        <div class="destination-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-image-container">
+                    <img src="https://www.astons.com/wp-content/uploads/2025/04/vse-o-santorini-2.webp" alt="Санторини, Греция">
+                </div>
+                <div class="destination-details">
+                    <h3 class="destination-name">Санторини</h3>
+                    <div class="destination-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Греция</span>
+                    </div>
+                    <div class="destination-pricing">
+                        <div class="destination-price">$1,600</div>
+                        <div class="destination-rating">
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-image-container">
+                    <img src="https://ezdili-znaem.com/wp-content/uploads/2023/03/ostrov-tenerife-poster937.jpg" alt="Токио, Япония">
+                </div>
+                <div class="destination-details">
+                    <h3 class="destination-name">Тенерифе</h3>
+                    <div class="destination-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Испания</span>
+                    </div>
+                    <div class="destination-pricing">
+                        <div class="destination-price">$1,500</div>
+                        <div class="destination-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="feedback-section" id="feedback">
+    <div class="page-container">
+        <div class="section-heading">
+            <h2 class="section-heading__title">Отзывы путешественников</h2>
+            <p class="section-heading__subtitle">Узнайте, что говорят наши клиенты о своих приключениях</p>
+        </div>
+
+        <div class="feedback-container">
+            <div class="feedback-item">
+                <div class="feedback-text">
+                    "Невероятное путешествие на Бали! Все было организовано безупречно. Спасибо Traveland за незабываемые впечатления!"
+                </div>
+                <div class="feedback-author">
+                    <div class="author-avatar">
+                        <img src="https://i.pinimg.com/736x/7c/fa/a3/7cfaa39549fc02726a24eebfaab753a4.jpg" alt="Анна">
+                    </div>
+                    <div class="author-info">
+                        <h4 class="author-info__name">Анна</h4>
+                        <p class="author-info__role">Путешественник</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback-item">
+                <div class="feedback-text">
+                    "Санторини превзошел все ожидания! Отличный сервис, комфортное проживание и потрясающие экскурсии. Обязательно вернусь!"
+                </div>
+                <div class="feedback-author">
+                    <div class="author-avatar">
+                        <img src="https://i.pinimg.com/236x/1f/83/b5/1f83b52428a88b2ab9e86aa0b4431bf5.jpg" alt="Дмитрий">
+                    </div>
+                    <div class="author-info">
+                        <h4 class="author-info__name">Дмитрий</h4>
+                        <p class="author-info__role">Фотограф</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback-item">
+                <div class="feedback-text">
+                    "Тенерифе была моей мечтой, и Traveland помог осуществить ее! Все детали были продуманы, гиды отличные. Рекомендую!"
+                </div>
+                <div class="feedback-author">
+                    <div class="author-avatar">
+                        <img src="https://ss.metronews.ru/userfiles/materials/197/1975258/858x540.jpg" alt="Ольга">
+                    </div>
+                    <div class="author-info">
+                        <h4 class="author-info__name">Ольга</h4>
+                        <p class="author-info__role">Блогер</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="promo-section" id="contact">
+    <div class="page-container">
+        <h2 class="promo-heading">Готовы к следующему приключению?</h2>
+        <p class="promo-description">Присоединяйтесь к тысячам довольных путешественников и откройте для себя мир с Traveland</p>
+        <div class="promo-actions">
+            <a href="#destinations" class="action-button action-button--light">Найти тур</a>
+            <a href="#contact" class="action-button action-button--outline" style="border-color: white; color: white;">Связаться с нами</a>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="page-container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3 class="footer-column__title">Traveland</h3>
+                <p>Мы создаем незабываемые путешествия по всему миру. Откройте для себя новые горизонты с нами.</p>
+                <div class="social-links-container">
+                    <a href="https://www.facebook.com/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://ru.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-column__title">Компания</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#features" class="footer-link">О нас</a></li>
+                    <li><a href="#" class="footer-link">Карьера</a></li>
+                    <li><a href="#" class="footer-link">Блог</a></li>
+                    <li><a href="#" class="footer-link">Партнеры</a></li>
+                    <li><a href="#" class="footer-link">Пресса</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-column__title">Поддержка</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#" class="footer-link">Помощь</a></li>
+                    <li><a href="#contact" class="footer-link">Контакты</a></li>
+                    <li><a href="#" class="footer-link">FAQ</a></li>
+                    <li><a href="#" class="footer-link">Сообщество</a></li>
+                    <li><a href="#" class="footer-link">Служба поддержки</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-column__title">Контакты</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#" class="footer-link"><i class="fas fa-map-marker-alt"></i> Минск, ул. Карла Маркса, 32</a></li>
+                    <li><a href="#" class="footer-link"><i class="fas fa-phone"></i> +375 (29) 283 88 60</a></li>
+                    <li><a href="#" class="footer-link"><i class="fas fa-envelope"></i> info@traveland.ru</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Traveland. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+<script type="module">
+    import { auth } from './js/fireBaseConfing.js';
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    onAuthStateChanged(auth, (user) => {
+        const el = document.querySelector('.user-authentication');
+        if (user) {
+            el.innerHTML = `${user.email} <button id="logout">Выйти</button>`;
+            document.getElementById('logout').onclick = () => signOut(auth);
+        } else {
+            el.innerHTML = '<a href="fireBase.html">Войти</a>';
+        }
+    });
+</script>
+</body>
+</html>
