@@ -1,10 +1,17 @@
-// js/destinationsPage.js
 import { destinations } from './destinationsData.js';
+import { getFavorites, addToFavorites, removeFromFavorites, isFavorite, updateFavoriteButton } from './favorites.js';
 
-// Функция для создания HTML карточки
+let currentDestinations = [...destinations];
+
+// Функция для создания HTML карточки с кнопкой избранного
 function createDestinationCard(destination) {
+    const isFav = isFavorite(destination.id);
+
     return `
         <div class="destination-card" data-id="${destination.id}">
+            <div class="favorite-btn" data-id="${destination.id}">
+                <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
+            </div>
             <div class="destination-image-container">
                 <img src="${destination.imageUrl}" alt="${destination.name}, ${destination.country}" loading="lazy">
             </div>
@@ -15,7 +22,7 @@ function createDestinationCard(destination) {
                     <span>${destination.country}</span>
                 </div>
                 <div class="destination-info" style="margin: 10px 0; color: var(--text-secondary); font-size: 14px;">
-                    <span>${destination.duration}</span> • <span>${destination.type}</span>
+                    <span>${destination.duration || '7 дней'}</span> • <span>${destination.type || 'Экскурсионный'}</span>
                 </div>
                 <div class="destination-pricing">
                     <div class="destination-price">$${destination.price.toLocaleString()}</div>
@@ -38,9 +45,9 @@ function filterDestinations() {
     const priceMax = document.getElementById('priceMax').value;
     const duration = document.getElementById('duration').value;
     const rating = document.getElementById('rating').value;
-    const countOfPpl = document.getElementById('countOf').value;
+    const favoriteOnly = document.getElementById('favoriteOnly').checked;
 
-    return destinations.filter(dest => {
+    return currentDestinations.filter(dest => {
         // Поиск по названию
         if (searchTerm && !dest.name.toLowerCase().includes(searchTerm)) {
             return false;
@@ -68,7 +75,7 @@ function filterDestinations() {
 
         // Фильтр по длительности
         if (duration) {
-            const destDuration = parseInt(dest.duration);
+            const destDuration = parseInt(dest.duration) || 7;
             if (duration === '6' && destDuration > 7) return false;
             if (duration === '8' && (destDuration < 7 || destDuration > 10)) return false;
             if (duration === '11' && destDuration < 11) return false;
@@ -76,6 +83,11 @@ function filterDestinations() {
 
         // Фильтр по рейтингу
         if (rating && dest.rating < parseFloat(rating)) {
+            return false;
+        }
+
+        // Фильтр только избранные
+        if (favoriteOnly && !isFavorite(dest.id)) {
             return false;
         }
 
@@ -97,10 +109,35 @@ function renderFilteredDestinations() {
 
     // Показываем результаты или сообщение
     if (filtered.length === 0) {
-        grid.innerHTML = '<div class="no-results">По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</div>';
+        const favoriteOnly = document.getElementById('favoriteOnly').checked;
+        let message = 'По вашему запросу ничего не найдено.';
+        if (favoriteOnly) {
+            message = 'У вас пока нет избранных направлений. Добавьте направления в избранное, нажав на сердечко.';
+        }
+        grid.innerHTML = `<div class="no-results">${message}</div>`;
     } else {
         filtered.forEach(dest => {
             grid.innerHTML += createDestinationCard(dest);
+        });
+
+        // Добавляем обработчики на кнопки избранного
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const id = parseInt(btn.dataset.id);
+                const destination = currentDestinations.find(d => d.id === id);
+
+                if (isFavorite(id)) {
+                    removeFromFavorites(id);
+                } else {
+                    addToFavorites(destination);
+                }
+
+                // Перерисовываем с учетом фильтра
+                renderFilteredDestinations();
+            });
         });
     }
 }
@@ -114,6 +151,7 @@ function resetFilters() {
     document.getElementById('priceMax').value = '';
     document.getElementById('duration').value = '';
     document.getElementById('rating').value = '';
+    document.getElementById('favoriteOnly').checked = false;
 
     renderFilteredDestinations();
 }
@@ -126,6 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Навешиваем обработчики на кнопки
     document.getElementById('applyFilters').addEventListener('click', renderFilteredDestinations);
     document.getElementById('resetFilters').addEventListener('click', resetFilters);
+
+    // Фильтр избранного
+    document.getElementById('favoriteOnly').addEventListener('change', renderFilteredDestinations);
 
     // Добавляем возможность фильтрации при нажатии Enter в полях ввода
     const inputs = document.querySelectorAll('input, select');

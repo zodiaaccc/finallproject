@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Traveland - Детали тура</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylesOfProject.css">
+    <style>
+        .booking-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .booking-modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .booking-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .booking-modal-header h3 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        .booking-modal-close {
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+        .booking-modal-close:hover {
+            color: #ff4757;
+        }
+        .booking-modal-body {
+            padding: 20px;
+        }
+        .booking-tour-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .booking-tour-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+        }
+        .booking-tour-info p {
+            margin: 3px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .booking-form-group {
+            margin-bottom: 15px;
+        }
+        .booking-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        .booking-form-group input,
+        .booking-form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .booking-total-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--brand-primary);
+        }
+        .no-reviews {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+<div class="tour-detail">
+    <div class="page-container">
+        <a href="javascript:history.back()" class="back-link">
+            <i class="fas fa-arrow-left"></i> Назад к турам
+        </a>
+        <div id="tourContent"></div>
+    </div>
+</div>
+
+<!-- Модальное окно бронирования -->
+<div id="bookingModal" class="booking-modal" style="display: none;">
+    <div class="booking-modal-content">
+        <div class="booking-modal-header">
+            <h3>Бронирование тура</h3>
+            <span class="booking-modal-close">&times;</span>
+        </div>
+        <div class="booking-modal-body">
+            <div class="booking-tour-info">
+                <img id="bookingTourImage" src="" alt="" style="width: 100px; height: 70px; object-fit: cover; border-radius: 8px;">
+                <div>
+                    <h4 id="bookingTourName"></h4>
+                    <p id="bookingTourLocation"></p>
+                    <p><strong id="bookingTourPrice"></strong> за человека</p>
+                </div>
+            </div>
+            <form id="bookingForm">
+                <div class="booking-form-group">
+                    <label for="peopleCount">Количество человек:</label>
+                    <input type="number" id="peopleCount" min="1" max="20" value="1" required>
+                </div>
+                <div class="booking-form-group">
+                    <label>Общая стоимость:</label>
+                    <div class="booking-total-price" id="totalPrice">$0</div>
+                </div>
+                <div class="booking-form-group">
+                    <label for="comment">Комментарий (необязательно):</label>
+                    <textarea id="comment" rows="3" placeholder="Ваши пожелания..."></textarea>
+                </div>
+                <button type="submit" class="action-button action-button--primary" style="width: 100%;">Подтвердить бронирование</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="page-container">
+        <div class="footer-content" style="justify-content: center; padding-left: 200px;">
+            <div class="footer-column">
+                <h3 class="footer-column__title">Traveland</h3>
+                <p>Мы создаем незабываемые путешествия по всему миру. Откройте для себя новые горизонты с нами.</p>
+                <div class="social-links-container">
+                    <a href="https://www.facebook.com/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://ru.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-column__title">Контакты</h3>
+                <ul class="footer-links-list">
+                    <li><a class="footer-link"><i class="fas fa-map-marker-alt"></i> Минск, ул. Карла Маркса, 32</a></li>
+                    <li><a class="footer-link"><i class="fas fa-phone"></i> +375 (29) 283 88 60</a></li>
+                    <li><a class="footer-link"><i class="fas fa-envelope"></i> info@traveland.ru</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Traveland. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Traveland. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module">
+    import { destinationsData } from './js/destinationsData.js';
+    import { addToFavorites, removeFromFavorites, isFavorite } from './js/favorites.js';
+    import { addBooking } from './js/bookings.js';
+    import { auth } from './js/firebaseConfig.js';
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const tourId = parseInt(urlParams.get('id'));
+
+    let tour = null;
+    let cityName = '';
+    let countryName = '';
+
+    for (const country of destinationsData) {
+        for (const city of country.cities) {
+            const found = city.tours.find(t => t.id === tourId);
+            if (found) {
+                tour = found;
+                cityName = city.name;
+                countryName = country.name;
+                break;
+            }
+        }
+        if (tour) break;
+    }
+
+    if (!tour) window.location.href = 'countries.html';
+
+    function getStars(rating) {
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+        let stars = '';
+        for (let i = 0; i < fullStars; i++) stars += '<i class="fas fa-star"></i>';
+        if (halfStar) stars += '<i class="fas fa-star-half-alt"></i>';
+        const emptyStars = 5 - Math.ceil(rating);
+        for (let i = 0; i < emptyStars; i++) stars += '<i class="far fa-star"></i>';
+        return stars;
+    }
+
+    function renderTour() {
+        const container = document.getElementById('tourContent');
+        const isFav = isFavorite(tour.id);
+        const hasReviews = tour.reviews && tour.reviews.length > 0;
+
+        container.innerHTML = `
+            <div class="tour-header">
+                <img src="${tour.imageUrl}" alt="${tour.name}" class="tour-main-image">
+                <div class="tour-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                        <h1 class="tour-title-large">${tour.name}</h1>
+                        <button class="favorite-detail-btn" id="favoriteDetailBtn" style="background: none; border: none; cursor: pointer; font-size: 28px;">
+                            <i class="${isFav ? 'fas' : 'far'} fa-heart" style="color: ${isFav ? '#ff4757' : '#ddd'}; transition: all 0.3s;"></i>
+                        </button>
+                    </div>
+                    <div class="tour-meta">
+                        <div class="meta-item"><i class="fas fa-map-marker-alt"></i> ${countryName}, ${cityName}</div>
+                        <div class="meta-item"><i class="fas fa-clock"></i> ${tour.duration} дней</div>
+                        <div class="meta-item"><i class="fas fa-users"></i> Макс. ${tour.maxPeople} чел.</div>
+                        <div class="meta-item"><i class="fas fa-star"></i> ${tour.rating}</div>
+                    </div>
+                    <p>${tour.description}</p>
+                    <div class="price-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                            <div>
+                                <div style="color: var(--text-secondary);">Стоимость тура</div>
+                                <div class="price">$${tour.price}</div>
+                                <div style="color: var(--text-secondary); font-size: 14px;">за человека</div>
+                            </div>
+                            <button class="book-btn" id="bookBtn">Забронировать сейчас</button>
+                        </div>
+                    </div>
+                    <h3>Что включено:</h3>
+                    <ul style="margin: 15px 0 0 20px;">${tour.included.map(item => `<li>${item}</li>`).join('')}</ul>
+                </div>
+            </div>
+            <div class="reviews-section">
+                <h3>Отзывы путешественников</h3>
+                ${hasReviews ? `
+                    <button class="show-reviews-btn" id="showReviewsBtn">
+                        <i class="fas fa-comments"></i> Показать все отзывы
+                    </button>
+                    <div class="reviews-list" id="reviewsList">
+                        ${tour.reviews.map(review => `
+                            <div class="review-item">
+                                <div class="review-author">
+                                    <div class="review-avatar">${review.author[0]}</div>
+                                    <div>
+                                        <div class="review-name">${review.author}</div>
+                                        <div class="review-date">${review.date}</div>
+                                    </div>
+                                    <div class="rating" style="margin-left: auto;">${getStars(review.rating)} <span>${review.rating}</span></div>
+                                </div>
+                                <div class="review-text">${review.text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : `
+                    <div class="no-reviews">
+                        <i class="far fa-comment-dots" style="font-size: 48px; color: var(--border-light); margin-bottom: 15px;"></i>
+                        <p>Пока нет отзывов. Будьте первым, кто поделится впечатлениями!</p>
+                    </div>
+                `}
+            </div>
+        `;
+
+        // Обработчик кнопки избранного
+        const favDetailBtn = document.getElementById('favoriteDetailBtn');
+        if (favDetailBtn) {
+            favDetailBtn.onclick = (e) => {
+                e.preventDefault();
+                const tourData = {
+                    id: tour.id,
+                    name: tour.name,
+                    price: tour.price,
+                    rating: tour.rating,
+                    duration: tour.duration,
+                    imageUrl: tour.imageUrl,
+                    cityName: cityName,
+                    countryName: countryName
+                };
+
+                if (isFavorite(tour.id)) {
+                    removeFromFavorites(tour.id);
+                    favDetailBtn.innerHTML = '<i class="far fa-heart" style="color: #ddd;"></i>';
+                } else {
+                    addToFavorites(tourData);
+                    favDetailBtn.innerHTML = '<i class="fas fa-heart" style="color: #ff4757;"></i>';
+                }
+            };
+        }
+
+        // Обработчик отзывов
+        if (hasReviews) {
+            const showReviewsBtn = document.getElementById('showReviewsBtn');
+            const reviewsList = document.getElementById('reviewsList');
+            if (showReviewsBtn) {
+                showReviewsBtn.onclick = () => {
+                    reviewsList.classList.toggle('show');
+                    showReviewsBtn.innerHTML = reviewsList.classList.contains('show')
+                        ? '<i class="fas fa-eye-slash"></i> Скрыть отзывы'
+                        : '<i class="fas fa-comments"></i> Показать все отзывы';
+                };
+            }
+        }
+
+        // Обработчик бронирования
+        const modal = document.getElementById('bookingModal');
+        const bookBtn = document.getElementById('bookBtn');
+        const closeModalBtn = document.querySelector('.booking-modal-close');
+
+        if (bookBtn) {
+            bookBtn.onclick = () => {
+                onAuthStateChanged(auth, (user) => {
+                    if (!user) {
+                        alert('Для бронирования необходимо войти в аккаунт!');
+                        window.location.href = 'fireBaseApp.html';
+                        return;
+                    }
+
+                    document.getElementById('bookingTourImage').src = tour.imageUrl;
+                    document.getElementById('bookingTourName').textContent = tour.name;
+                    document.getElementById('bookingTourLocation').textContent = `${cityName}, ${countryName}`;
+                    document.getElementById('bookingTourPrice').textContent = `$${tour.price}`;
+                    document.getElementById('peopleCount').value = 1;
+                    updateTotalPrice();
+
+                    modal.style.display = 'flex';
+                });
+            };
+        }
+
+        if (closeModalBtn) {
+            closeModalBtn.onclick = () => {
+                modal.style.display = 'none';
+            };
+        }
+
+        window.onclick = (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        function updateTotalPrice() {
+            const peopleCount = parseInt(document.getElementById('peopleCount').value) || 1;
+            const total = tour.price * peopleCount;
+            document.getElementById('totalPrice').textContent = `$${total.toLocaleString()}`;
+        }
+
+        const peopleCountInput = document.getElementById('peopleCount');
+        if (peopleCountInput) {
+            peopleCountInput.addEventListener('input', updateTotalPrice);
+        }
+
+        const bookingForm = document.getElementById('bookingForm');
+        if (bookingForm) {
+            bookingForm.onsubmit = async (e) => {
+                e.preventDefault();
+
+                const user = auth.currentUser;
+                if (!user) {
+                    alert('Необходимо войти в аккаунт!');
+                    window.location.href = 'fireBaseApp.html';
+                    return;
+                }
+
+                const peopleCount = parseInt(document.getElementById('peopleCount').value);
+                const totalPrice = tour.price * peopleCount;
+                const comment = document.getElementById('comment').value;
+
+                const booking = {
+                    tourId: tour.id,
+                    tourName: tour.name,
+                    cityName: cityName,
+                    countryName: countryName,
+                    price: tour.price,
+                    duration: tour.duration,
+                    imageUrl: tour.imageUrl,
+                    peopleCount: peopleCount,
+                    totalPrice: totalPrice,
+                    userId: user.uid,
+                    comment: comment
+                };
+
+                addBooking(booking);
+                alert(`Тур успешно забронирован!\nСтоимость: $${totalPrice.toLocaleString()}\nСкоро с вами свяжется менеджер.`);
+                modal.style.display = 'none';
+                document.getElementById('comment').value = '';
+            };
+        }
+    }
+
+    renderTour();
+</script>
+</body>
+</html>
