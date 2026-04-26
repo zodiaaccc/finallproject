@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Traveland - Страны</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylesOfProject.css">
+    <style>
+        .countries-page {
+            padding: 60px 0;
+            background: var(--background-light);
+            min-height: calc(100vh - 200px);
+        }
+
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .country-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .country-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .country-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .country-info {
+            padding: 20px;
+        }
+
+        .country-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .country-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: var(--brand-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-home:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="countries-page">
+    <div class="page-container">
+        <a href="index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i> На главную
+        </a>
+
+        <div class="section-heading">
+            <h2 class="section-heading__title">Выберите страну</h2>
+            <p class="section-heading__subtitle">Откройте для себя удивительные места по всему миру</p>
+        </div>
+
+        <div class="countries-grid" id="countriesGrid"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="page-container">
+        <div class="footer-content" style="justify-content: center; padding-left: 200px;">
+            <div class="footer-column">
+                <h3 class="footer-column__title">Traveland</h3>
+                <p>Мы создаем незабываемые путешествия по всему миру. Откройте для себя новые горизонты с нами.</p>
+                <div class="social-links-container">
+                    <a href="https://www.facebook.com/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://ru.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-column__title">Контакты</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#" class="footer-link"><i class="fas fa-map-marker-alt"></i> Минск, ул. Карла Маркса, 32</a></li>
+                    <li><a href="#" class="footer-link"><i class="fas fa-phone"></i> +375 (29) 283 88 60</a></li>
+                    <li><a href="#" class="footer-link"><i class="fas fa-envelope"></i> info@traveland.ru</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Traveland. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module">
+    import { destinationsData } from './js/destinationsData.js';
+
+    function getDirectionsText(count) {
+        if (count % 10 === 1 && count % 100 !== 11) return 'направление';
+        if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20)) return 'направления';
+        return 'направлений';
+    }
+
+    function renderCountries() {
+        const grid = document.getElementById('countriesGrid');
+
+        grid.innerHTML = destinationsData.map(country => {
+            const directionsCount = country.cities.length;
+            const directionsText = getDirectionsText(directionsCount);
+
+            return `
+                <a href="cities.html?country=${encodeURIComponent(country.name)}" class="country-card">
+                    <div class="country-image">
+                        <img src="${country.imageUrl}" alt="${country.name}">
+                    </div>
+                    <div class="country-info">
+                        <h3 class="country-name">${country.name}</h3>
+                        <p class="country-description">${country.description}</p>
+                        <div style="margin-top: 15px; color: var(--brand-primary); font-weight: 500;">
+                            ${directionsCount} ${directionsText} <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }).join('');
+    }
+
+    renderCountries();
+</script>
+</body>
+</html>

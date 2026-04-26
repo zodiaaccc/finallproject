@@ -1,0 +1,296 @@
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Traveland - Вход / Регистрация</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/stylesOfProject.css">
+        <style>
+            .auth-page {
+                min-height: 80vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #f5f7ff 0%, #e6eeff 100%);
+                padding: 40px 20px;
+            }
+
+            .auth-container {
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+                width: 100%;
+                max-width: 450px;
+            }
+
+            .auth-container h2 {
+                text-align: center;
+                margin-bottom: 30px;
+                color: #1F2A37;
+                font-size: 28px;
+            }
+
+            .auth-form {
+                display: none;
+            }
+
+            .auth-form.active {
+                display: block;
+            }
+
+            .auth-form input {
+                width: 100%;
+                padding: 12px 15px;
+                margin-bottom: 15px;
+                border: 1px solid #E5E7EB;
+                border-radius: 8px;
+                font-family: 'Inter', sans-serif;
+                font-size: 16px;
+                transition: all 0.3s;
+            }
+
+            .auth-form input:focus {
+                outline: none;
+                border-color: #4A6CF7;
+                box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+            }
+
+            .auth-form button {
+                width: 100%;
+                padding: 12px;
+                background: #4A6CF7;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 16px;
+                transition: all 0.3s;
+            }
+
+            .auth-form button:hover {
+                background: #3A57D4;
+                transform: translateY(-2px);
+            }
+
+            .auth-link {
+                text-align: center;
+                margin-top: 20px;
+                color: #6B7280;
+            }
+
+            .auth-link a {
+                color: #4A6CF7;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .auth-link a:hover {
+                text-decoration: underline;
+            }
+
+            .message {
+                margin-top: 20px;
+                padding: 12px;
+                border-radius: 8px;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .message.success {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+
+            .message.error {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+            }
+
+            .back-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 20px;
+                color: #6B7280;
+                text-decoration: none;
+                font-size: 14px;
+                transition: color 0.3s;
+            }
+
+            .back-link:hover {
+                color: #4A6CF7;
+            }
+
+            .loading {
+                opacity: 0.7;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+    <header class="site-header">
+        <div class="page-container header-content">
+            <a href="index.html" class="brand-logo">
+                <i class="fas fa-map-marked-alt brand-logo__icon"></i>
+                Traveland
+            </a>
+        </div>
+    </header>
+
+    <div class="auth-page">
+        <div class="auth-container">
+            <h2>Добро пожаловать!</h2>
+
+            <form id="loginForm" class="auth-form active">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Пароль" required>
+                <button type="submit" id="loginBtn">Войти</button>
+                <div class="auth-link">
+                    Нет аккаунта? <a href="#" id="showRegisterLink">Зарегистрироваться</a>
+                </div>
+            </form>
+
+            <form id="registerForm" class="auth-form">
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Пароль" required>
+                <div class="password-hint" style="font-size: 12px; color: #6B7280; margin-top: -10px; margin-bottom: 15px;">
+                    Пароль должен содержать не менее 6 символов
+                </div>
+                <button type="submit" id="registerBtn">Зарегистрироваться</button>
+                <div class="auth-link">
+                    Уже есть аккаунт? <a href="#" id="showLoginLink">Войти</a>
+                </div>
+            </form>
+
+            <div id="message" class="message"></div>
+            <div style="text-align: center;">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> На главную</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth } from './js/firebaseConfig.js';
+        import {
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword
+        } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+        // Элементы
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const showRegisterLink = document.getElementById('showRegisterLink');
+        const showLoginLink = document.getElementById('showLoginLink');
+        const messageDiv = document.getElementById('message');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+
+        // Функция для показа сообщений
+        function showMessage(text, type) {
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerText = text;
+
+            setTimeout(() => {
+                if (messageDiv.innerText === text) {
+                    messageDiv.innerHTML = '';
+                    messageDiv.className = 'message';
+                }
+            }, 5000);
+        }
+
+        function setLoading(isLoading, form) {
+            if (isLoading) {
+                form.classList.add('loading');
+                const btn = form.querySelector('button');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Загрузка...';
+            } else {
+                form.classList.remove('loading');
+                const btn = form.querySelector('button');
+                btn.disabled = false;
+                btn.innerHTML = btn.id === 'loginBtn' ? 'Войти' : 'Зарегистрироваться';
+            }
+        }
+
+        showRegisterLink.onclick = (e) => {
+            e.preventDefault();
+            loginForm.classList.remove('active');
+            registerForm.classList.add('active');
+            messageDiv.innerHTML = '';
+        };
+
+        showLoginLink.onclick = (e) => {
+            e.preventDefault();
+            registerForm.classList.remove('active');
+            loginForm.classList.add('active');
+            messageDiv.innerHTML = '';
+        };
+
+        registerForm.onsubmit = async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            if (password.length < 6) {
+                showMessage('Пароль должен содержать не менее 6 символов', 'error');
+                return;
+            }
+
+            setLoading(true, registerForm);
+
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+                showMessage('Регистрация успешна! Перенаправление...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+
+            } catch (error) {
+                let errorMessage = 'Ошибка регистрации. Попробуйте другой email или пароль.';
+
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = 'Этот email уже зарегистрирован. Попробуйте войти или используйте другой email.';
+                }
+                else if (error.code === 'auth/weak-password') {
+                    errorMessage = 'Пароль должен содержать не менее 6 символов.';
+                }
+
+                showMessage(errorMessage, 'error');
+            } finally {
+                setLoading(false, registerForm);
+            }
+        };
+
+        loginForm.onsubmit = async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            setLoading(true, loginForm);
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                showMessage('Успешный вход! Перенаправление...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+
+            } catch (error) {
+                showMessage('Неверный email или пароль', 'error');
+            } finally {
+                setLoading(false, loginForm);
+            }
+        };
+    </script>
+    </body>
+    </html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Traveland - Туры</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylesOfProject.css">
+  <style>
+    .tour-card {
+      position: relative;
+    }
+    .favorite-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .favorite-btn i {
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+    .favorite-btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+<div class="tours-page">
+  <div class="page-container">
+    <a href="javascript:history.back()" class="back-link"><i class="fas fa-arrow-left"></i> Назад к направлениям</a>
+    <h1 class="section-heading__title" id="cityName"></h1>
+    <p class="section-heading__subtitle" id="countryName"></p>
+    <div class="tours-grid" id="toursGrid"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="page-container">
+    <div class="footer-content" style="justify-content: center; padding-left: 200px;">
+      <div class="footer-column">
+        <h3 class="footer-column__title">Traveland</h3>
+        <p>Мы создаем незабываемые путешествия по всему миру. Откройте для себя новые горизонты с нами.</p>
+        <div class="social-links-container">
+          <a href="https://www.facebook.com/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://ru.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-column__title">Контакты</h3>
+        <ul class="footer-links-list">
+          <li><a href="#" class="footer-link"><i class="fas fa-map-marker-alt"></i> Минск, ул. Карла Маркса, 32</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-phone"></i> +375 (29) 283 88 60</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-envelope"></i> info@traveland.ru</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Traveland. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { destinationsData } from './js/destinationsData.js';
+  import { addToFavorites, removeFromFavorites, isFavorite } from './js/favorites.js';
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const cityName = urlParams.get('city');
+  const countryName = urlParams.get('country');
+  const country = destinationsData.find(c => c.name === countryName);
+  const city = country?.cities.find(c => c.name === cityName);
+
+  if (!city) window.location.href = 'countries.html';
+
+  document.getElementById('cityName').textContent = city.name;
+  document.getElementById('countryName').textContent = `${country.name}, ${city.name}`;
+
+  function renderTours() {
+    const grid = document.getElementById('toursGrid');
+
+    grid.innerHTML = city.tours.map(tour => {
+      const isFav = isFavorite(tour.id);
+      return `
+                <div class="tour-card" data-tour-id="${tour.id}">
+                    <div class="favorite-btn" data-id="${tour.id}">
+                        <i class="${isFav ? 'fas' : 'far'} fa-heart" style="color: ${isFav ? '#ff4757' : '#ddd'};"></i>
+                    </div>
+                    <a href="tour-detail.html?id=${tour.id}" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="tour-image">
+                            <img src="${tour.imageUrl}" alt="${tour.name}">
+                            <div class="tour-price">$${tour.price}</div>
+                        </div>
+                        <div class="tour-info">
+                            <h3 class="tour-title">${tour.name}</h3>
+                            <div class="tour-details">
+                                <span><i class="fas fa-clock"></i> ${tour.duration} дней</span>
+                                <span><i class="fas fa-users"></i> ${tour.maxPeople} чел.</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> ${tour.rating}
+                                <span style="color: var(--text-secondary);">(${tour.reviewsCount} ${getReviewsText(tour.reviewsCount)})</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+    }).join('');
+
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const tourId = parseInt(btn.dataset.id);
+        const tour = city.tours.find(t => t.id === tourId);
+
+        const tourData = {
+          id: tour.id,
+          name: tour.name,
+          price: tour.price,
+          rating: tour.rating,
+          duration: tour.duration,
+          imageUrl: tour.imageUrl,
+          cityName: city.name,
+          countryName: country.name
+        };
+
+        if (isFavorite(tourId)) {
+          removeFromFavorites(tourId);
+          const icon = btn.querySelector('i');
+          icon.className = 'far fa-heart';
+          icon.style.color = '#ddd';
+        } else {
+          addToFavorites(tourData);
+          const icon = btn.querySelector('i');
+          icon.className = 'fas fa-heart';
+          icon.style.color = '#ff4757';
+        }
+      });
+    });
+  }
+  function getReviewsText(count) {
+    if (count % 10 === 1 && count % 100 !== 11) return 'отзыв';
+    if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20)) return 'отзыва';
+    return 'отзывов';
+  }
+
+  renderTours();
+</script>
+</body>
+</html>

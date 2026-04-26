@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveland - Откройте мир заново</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylesOfProject.css">
+    <style>
+        .site-header {
+            padding: 20px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .brand-logo {
+            font-size: 28px;
+            white-space: nowrap;
+        }
+
+        .main-navigation ul {
+            gap: 40px;
+        }
+
+        .navigation-link {
+            font-size: 16px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .user-authentication {
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-button {
+            padding: 10px 20px;
+            white-space: nowrap;
+        }
+
+        .contact-section {
+            padding: 80px 0;
+            background: var(--background-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: var(--background-white);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--background-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-primary);
+            font-size: 18px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page-container header-content">
+        <a href="index.html" class="brand-logo">
+            <i class="fas fa-map-marked-alt brand-logo__icon"></i>
+            Traveland
+        </a>
+
+        <nav class="main-navigation">
+            <ul>
+                <li><a href="index.html" class="navigation-link navigation-link--active">Главная</a></li>
+                <li><a href="countries.html" class="navigation-link">Направления</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-authentication">
+            <button class="action-button action-button--outline" onclick="window.location.href='bookings.html'">
+                <i class="fas fa-calendar-check"></i> Мои бронирования
+            </button>
+            <button class="action-button action-button--outline" onclick="window.location.href='favorites.html'">
+                <i class="far fa-heart"></i> Избранное
+            </button>
+            <button class="action-button action-button--outline" onclick="window.location.href='fireBaseApp.html'">Войти</button>
+            <button class="action-button action-button--primary" onclick="window.location.href='fireBaseApp.html'">Регистрация</button>
+        </div>
+    </div>
+</header>
+
+<section class="main-banner" id="home">
+    <div class="page-container">
+        <div class="banner-content">
+            <h1 class="banner-headline">Откройте мир заново с Traveland</h1>
+            <p class="banner-description">Мы предлагаем уникальные путешествия по всему миру. Откройте для себя новые культуры, насладитесь природными красотами и создайте воспоминания на всю жизнь.</p>
+            <div class="banner-actions">
+                <a href="countries.html" class="action-button action-button--primary">Начать путешествие</a>
+                <a href="#contact" class="action-button action-button--outline">Узнать больше</a>
+            </div>
+        </div>
+        <div class="banner-visual">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Путешественник">
+        </div>
+    </div>
+</section>
+
+<section class="features-section" id="features">
+    <div class="page-container">
+        <div class="section-heading">
+            <h2 class="section-heading__title">Почему выбирают нас</h2>
+            <p class="section-heading__subtitle">Мы предлагаем лучший сервис для вашего идеального путешествия</p>
+        </div>
+
+            <div class="feature-item">
+                <div class="feature-icon-container">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-item__title">Безопасность</h3>
+                <p class="feature-item__description">Ваша безопасность - наш приоритет. Все партнеры проверены и сертифицированы</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon-container">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3 class="feature-item__title">Лучшие цены</h3>
+                <p class="feature-item__description">Гарантия лучшей цены или возврат разницы. Без скрытых платежей</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon-container">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-item__title">Поддержка 24/7</h3>
+                <p class="feature-item__description">Наша команда поддержки всегда готова помочь в любой точке мира</p>
+            </div>
+        </div>
+</section>
+
+
+<section class="destinations-section" id="destinations">
+    <div class="page-container">
+        <div class="section-heading">
+            <h2 class="section-heading__title">Популярные направления</h2>
+            <p class="section-heading__subtitle">Откройте для себя самые захватывающие места на планете</p>
+        </div>
+
+        <div class="destinations-container" id="popularDestinations">
+
+        </div>
+    </div>
+</section>
+
+
+<section class="feedback-section" id="feedback">
+    <div class="page-container">
+        <div class="section-heading">
+            <h2 class="section-heading__title">Отзывы путешественников</h2>
+            <p class="section-heading__subtitle">Узнайте, что говорят наши клиенты о своих приключениях</p>
+        </div>
+
+        <div class="feedback-container">
+            <div class="feedback-item">
+                <div class="feedback-text">
+                    "Невероятное путешествие на Бали! Все было организовано безупречно. Спасибо Traveland за незабываемые впечатления!"
+                </div>
+                <div class="feedback-author">
+                    <div class="author-avatar">
+                        <img src="https://i.pinimg.com/736x/7c/fa/a3/7cfaa39549fc02726a24eebfaab753a4.jpg" alt="Анна">
+                    </div>
+                    <div class="author-info">
+                        <h4 class="author-info__name">Анна</h4>
+                        <p class="author-info__role">Путешественник</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback-item">
+                <div class="feedback-text">
+                    "Санторини превзошел все ожидания! Отличный сервис, комфортное проживание и потрясающие экскурсии. Обязательно вернусь!"
+                </div>
+                <div class="feedback-author">
+                    <div class="author-avatar">
+                        <img src="https://i.pinimg.com/236x/1f/83/b5/1f83b52428a88b2ab9e86aa0b4431bf5.jpg" alt="Дмитрий">
+                    </div>
+                    <div class="author-info">
+                        <h4 class="author-info__name">Дмитрий</h4>
+                        <p class="author-info__role">Фотограф</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback-item">
+                <div class="feedback-text">
+                    "Тенерифе была моей мечтой, и Traveland помог осуществить ее! Все детали были продуманы, гиды отличные. Рекомендую!"
+                </div>
+                <div class="feedback-author">
+                    <div class="author-avatar">
+                        <img src="https://ss.metronews.ru/userfiles/materials/197/1975258/858x540.jpg" alt="Ольга">
+                    </div>
+                    <div class="author-info">
+                        <h4 class="author-info__name">Ольга</h4>
+                        <p class="author-info__role">Блогер</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <div class="page-container">
+        <div class="section-heading">
+            <h2 class="section-heading__title">Свяжитесь с нами</h2>
+            <p class="section-heading__subtitle">Мы всегда рады помочь вам с выбором идеального путешествия</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Наши контакты</h3>
+                <p>Оставьте заявку или свяжитесь с нами удобным для вас способом. Наша команда ответит в течение 24 часов.</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Адрес</strong><br>
+                            Минск, ул. Карла Маркса, 32
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Телефон</strong><br>
+                            +375 (29) 283 88 60
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong><br>
+                            info@traveland.ru
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Режим работы</strong><br>
+                            Пн-Пт: 9:00 - 20:00<br>
+                            Сб-Вс: 10:00 - 18:00
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Написать нам</h3>
+                <form id="contactForm">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Тема сообщения">
+                    <textarea placeholder="Ваше сообщение" required></textarea>
+                    <button type="submit" class="action-button action-button--primary" style="width: 100%;">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="page-container">
+        <div class="footer-content" style="justify-content: center; padding-left: 200px;">
+            <div class="footer-column">
+                <h3 class="footer-column__title">Traveland</h3>
+                <p>Мы создаем незабываемые путешествия по всему миру. Откройте для себя новые горизонты с нами.</p>
+                <div class="social-links-container">
+                    <a href="https://www.facebook.com/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://ru.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-column__title">Контакты</h3>
+                <ul class="footer-links-list">
+                    <li><a  class="footer-link"><i class="fas fa-map-marker-alt"></i> Минск, ул. Карла Маркса, 32</a></li>
+                    <li><a  class="footer-link"><i class="fas fa-phone"></i> +375 (29) 283 88 60</a></li>
+                    <li><a  class="footer-link"><i class="fas fa-envelope"></i> info@traveland.ru</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Traveland. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module">
+    import { auth } from './js/firebaseConfig.js';
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+    import { destinationsData } from './js/destinationsData.js';
+
+    function renderPopularDestinations() {
+        const container = document.getElementById('popularDestinations');
+        if (!container) return;
+
+        const popularTours = [];
+        for (const country of destinationsData) {
+            if (popularTours.length >= 3) break;
+            const city = country.cities[0];
+            const tour = city.tours[0];
+            if (tour) {
+                popularTours.push({
+                    ...tour,
+                    cityName: city.name,
+                    countryName: country.name
+                });
+            }
+        }
+
+        container.innerHTML = popularTours.map(tour => `
+            <div class="destination-card">
+                <div class="destination-image-container">
+                    <img src="${tour.imageUrl}" alt="${tour.name}">
+                </div>
+                <div class="destination-details">
+                    <h3 class="destination-name">${tour.name}</h3>
+                    <div class="destination-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${tour.cityName}, ${tour.countryName}</span>
+                    </div>
+                    <div class="destination-pricing">
+                        <div class="destination-price">$${tour.price.toLocaleString()}</div>
+                        <div class="destination-rating">
+                            <i class="fas fa-star"></i>
+                            <span>${tour.rating}</span>
+                        </div>
+                    </div>
+                    <a href="tour-detail.html?id=${tour.id}" class="action-button action-button--outline" style="margin-top: 15px; display: block; text-align: center;">
+                        Подробнее
+                    </a>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    const userAuth = document.querySelector('.user-authentication');
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            userAuth.innerHTML = `
+                <button class="action-button action-button--outline" onclick="window.location.href='bookings.html'" style="margin-right: 10px;">
+                    <i class="fas fa-calendar-check"></i> Мои бронирования
+                </button>
+                <button class="action-button action-button--outline" onclick="window.location.href='favorites.html'" style="margin-right: 10px;">
+                    <i class="far fa-heart"></i> Избранное
+                </button>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #4A6CF7; font-weight: 500;">${user.email}</span>
+                    <button id="logoutBtn" class="action-button action-button--outline" style="margin: 0;">Выйти</button>
+                </div>
+            `;
+
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.onclick = async () => {
+                    try {
+                        await signOut(auth);
+                        window.location.reload();
+                    } catch (error) {
+                        console.error('Ошибка выхода:', error);
+                    }
+                };
+            }
+        } else {
+            userAuth.innerHTML = `
+                <button class="action-button action-button--outline" onclick="window.location.href='bookings.html'" style="margin-right: 10px;">
+                    <i class="fas fa-calendar-check"></i> Мои бронирования
+                </button>
+                <button class="action-button action-button--outline" onclick="window.location.href='favorites.html'" style="margin-right: 10px;">
+                    <i class="far fa-heart"></i> Избранное
+                </button>
+                <button class="action-button action-button--outline" onclick="window.location.href='fireBaseApp.html'">Войти</button>
+                <button class="action-button action-button--primary" onclick="window.location.href='fireBaseApp.html'">Регистрация</button>
+            `;
+        }
+    });
+
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо за сообщение! Мы свяжемся с вами в ближайшее время.');
+            contactForm.reset();
+        });
+    }
+
+    renderPopularDestinations();
+</script>
+</body>
+</html>
