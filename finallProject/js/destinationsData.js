@@ -1,80 +1,106 @@
 export const destinationsData = [
     {
         id: 1,
-        name: "Индонезия",
-        description: "Райский уголок с уникальной культурой и природой",
-        imageUrl: "https://www.svoiludi.ru/images/tb/4760/indonesia-place-resorts-islands-16957509129871_w687h357.jpg",
+        name: "Франция",
+        description: "Страна любви, вина и изысканной кухни",
+        imageUrl: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200",
         citiesCount: 3,
         cities: [
             {
                 id: 1,
-                name: "Бали",
-                description: "Остров богов с бесконечными пляжами и храмами",
-                imageUrl: "https://travelbelka.ru/wp-content/uploads/2020/02/manta-bay-or-kelingking-beach-on-nusa-penida-T8AHWZ6-696x392.jpg",
-                toursCount: 3,
+                name: "Париж",
+                description: "Город любви, света и романтики с Эйфелевой башней",
+                imageUrl: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200",
+                toursCount: 2,
                 tours: [
                     {
                         id: 1,
-                        name: "Райский отдых на Бали",
-                        price: 1200,
-                        duration: 10,
-                        maxPeople: 10,
-                        rating: 4.8,
-                        reviewsCount: 12,
-                        imageUrl: "https://www.ecotour.by/upload/iblock/ee2/bali.jpg",
-                        description: "Незабываемый отдых на райском острове с экскурсиями и спа-процедурами",
-                        included: ["Проживание в отеле 5*", "Завтраки", "Трансфер", "Медицинская страховка", "Экскурсия на вулкан"],
+                        name: "Париж: Романтика столицы",
+                        price: 1500,
+                        duration: 7,
+                        maxPeople: 12,
+                        rating: 4.9,
+                        reviewsCount: 25,
+                        imageUrl: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200",
+                        description: "Романтическое путешествие по Парижу с посещением Эйфелевой башни, Лувра и Монмартра",
+                        included: ["Проживание в центре", "Завтраки", "Экскурсии", "Трансфер", "Билеты в Лувр"],
                         reviews: [
-                            { author: "Анна С.", date: "2024-03-15", rating: 5, text: "Потрясающий отдых! Все было организовано на высшем уровне." },
-                            { author: "Михаил К.", date: "2024-02-10", rating: 4, text: "Очень понравилось, отличные экскурсии." },
-                            { author: "Екатерина В.", date: "2024-01-20", rating: 5, text: "Спа-процедуры - это что-то невероятное!" },
-                            { author: "Дмитрий П.", date: "2023-12-05", rating: 3, text: "Хорошо, но дороговато." },
-                            { author: "Ольга Н.", date: "2023-11-18", rating: 5, text: "Лучший отпуск в моей жизни!" },
-                            { author: "Сергей М.", date: "2023-10-22", rating: 4, text: "Все отлично, только питание однообразное." },
-                            { author: "Наталья Д.", date: "2023-09-30", rating: 5, text: "Восторг! Особенно понравилась экскурсия на вулкан." },
-                            { author: "Алексей И.", date: "2023-08-15", rating: 4.5, text: "Хороший тур, все включено." },
-                            { author: "Ирина С.", date: "2023-07-20", rating: 5, text: "Спасибо за организацию!" },
-                            { author: "Владимир Р.", date: "2023-06-10", rating: 4, text: "Достойный отдых. Цена соответствует качеству." }
+                            { author: "Екатерина М.", date: "2024-03-20", rating: 5, text: "Париж - город мечты! Все было великолепно!" },
+                            { author: "Александр П.", date: "2024-02-10", rating: 4.8, text: "Отличный тур, очень понравилась экскурсия в Лувр." }
                         ]
                     },
                     {
                         id: 2,
-                        name: "Бали: Серфинг и приключения",
-                        price: 1500,
-                        duration: 12,
-                        maxPeople: 8,
+                        name: "Версаль: Королевская роскошь",
+                        price: 800,
+                        duration: 3,
+                        maxPeople: 15,
+                        rating: 4.8,
+                        reviewsCount: 15,
+                        imageUrl: "https://blog.global-guide.org/wp-content/uploads/2025/01/111-176.jpg",
+                        description: "Экскурсия в знаменитый Версальский дворец и его сады",
+                        included: ["Трансфер", "Гид", "Входные билеты"],
+                        reviews: []
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: "Лазурный берег",
+                description: "Роскошные пляжи и знаменитые курорты",
+                imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Cote-d%27Azur.jpg",
+                toursCount: 2,
+                tours: [
+                    {
+                        id: 3,
+                        name: "Лазурный берег: Ницца и Канны",
+                        price: 1800,
+                        duration: 8,
+                        maxPeople: 10,
                         rating: 4.9,
-                        reviewsCount: 10,
-                        imageUrl: "https://www.atorus.ru/sites/default/files/upload/image/SovetyTuristam/4610/8.jpg",
-                        description: "Активный отдых с обучением серфингу и походами в джунгли",
-                        included: ["Проживание", "Завтраки и обеды", "Уроки серфинга", "Трансфер", "Страховка"],
+                        reviewsCount: 18,
+                        imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Cote-d%27Azur.jpg",
+                        description: "Отдых на роскошных пляжах Лазурного берега с посещением Ниццы, Канн и Монако",
+                        included: ["Проживание у моря", "Завтраки", "Экскурсии", "Трансфер"],
                         reviews: [
-                            { author: "Денис Л.", date: "2024-03-01", rating: 5, text: "Лучший серфинг в моей жизни!" },
-                            { author: "Алексей Б.", date: "2024-02-15", rating: 4.8, text: "Отличный тур для активных людей." },
-                            { author: "Максим С.", date: "2024-01-10", rating: 5, text: "Наконец-то освоил серфинг!" },
-                            { author: "Антон К.", date: "2023-12-20", rating: 4, text: "Хороший тур, но очень утомительный." },
-                            { author: "Павел Н.", date: "2023-11-05", rating: 5, text: "Невероятные эмоции!" },
-                            { author: "Роман В.", date: "2023-10-12", rating: 4.5, text: "Организация на высоте." },
-                            { author: "Илья Г.", date: "2023-09-08", rating: 5, text: "Мечта сбылась!" },
-                            { author: "Артем Ф.", date: "2023-08-25", rating: 4, text: "Хорошо, но мало свободного времени." },
-                            { author: "Виталий М.", date: "2023-07-14", rating: 5, text: "Лучший активный отдых!" },
-                            { author: "Евгений Т.", date: "2023-06-30", rating: 4.5, text: "Отличный тур, рекомендую!" }
+                            { author: "Мария С.", date: "2024-02-25", rating: 5, text: "Невероятная поездка! Монако - сказка!" }
                         ]
                     },
                     {
-                        id: 3,
-                        name: "Балийские храмы и культура",
-                        price: 1100,
-                        duration: 8,
+                        id: 4,
+                        name: "Сен-Тропе: Гламурный отдых",
+                        price: 2200,
+                        duration: 7,
+                        maxPeople: 8,
+                        rating: 5.0,
+                        reviewsCount: 12,
+                        imageUrl: "https://img.pac.ru/resorts/213098/255345/big/03B9B0FEC0A88014605067799B8A15D4.jpg",
+                        description: "VIP-отдых в самом гламурном курорте Франции",
+                        included: ["Вилла", "Завтраки и ужины", "Яхт-тур", "Трансфер", "Страховка"],
+                        reviews: []
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: "Прованс",
+                description: "Лавандовые поля и уютные деревушки",
+                imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Provence.jpg",
+                toursCount: 1,
+                tours: [
+                    {
+                        id: 5,
+                        name: "Прованс: Лавандовое сердце Франции",
+                        price: 1300,
+                        duration: 6,
                         maxPeople: 12,
-                        rating: 4.7,
-                        reviewsCount: 8,
-                        imageUrl: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200",
-                        description: "Погружение в культуру Бали с посещением главных храмов",
-                        included: ["Проживание", "Завтраки", "Экскурсии", "Трансфер", "Гид"],
+                        rating: 4.9,
+                        reviewsCount: 14,
+                        imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Provence.jpg",
+                        description: "Путешествие по лавандовым полям Прованса с дегустацией вин и сыров",
+                        included: ["Проживание в замке", "Завтраки", "Винные туры", "Трансфер", "Гид"],
                         reviews: [
-                            { author: "Мария К.", date: "2024-02-01", rating: 5, text: "Очень познавательная экскурсия!" },
-                            { author: "Иван П.", date: "2024-01-15", rating: 4.5, text: "Интересно, но много ходьбы." }
+                            { author: "Ольга К.", date: "2024-03-05", rating: 5, text: "Лавандовые поля - это что-то невероятное!" }
                         ]
                     }
                 ]
@@ -96,7 +122,7 @@ export const destinationsData = [
                 toursCount: 2,
                 tours: [
                     {
-                        id: 4,
+                        id: 6,
                         name: "Санторини: Романтика Эгейского моря",
                         price: 1600,
                         duration: 8,
@@ -115,7 +141,7 @@ export const destinationsData = [
                         ]
                     },
                     {
-                        id: 5,
+                        id: 7,
                         name: "Санторини: Винные туры",
                         price: 1400,
                         duration: 7,
@@ -137,7 +163,7 @@ export const destinationsData = [
                 toursCount: 1,
                 tours: [
                     {
-                        id: 6,
+                        id: 8,
                         name: "Афины: Колыбель цивилизации",
                         price: 1000,
                         duration: 6,
@@ -168,7 +194,7 @@ export const destinationsData = [
                 toursCount: 2,
                 tours: [
                     {
-                        id: 7,
+                        id: 9,
                         name: "Тенерифе: Восхождение на Тейде",
                         price: 1400,
                         duration: 9,
@@ -184,7 +210,7 @@ export const destinationsData = [
                         ]
                     },
                     {
-                        id: 8,
+                        id: 10,
                         name: "Тенерифе: Пляжный рай",
                         price: 1200,
                         duration: 10,
@@ -206,7 +232,7 @@ export const destinationsData = [
                 toursCount: 1,
                 tours: [
                     {
-                        id: 9,
+                        id: 11,
                         name: "Барселона: Архитектура Гауди",
                         price: 1100,
                         duration: 6,
@@ -237,7 +263,7 @@ export const destinationsData = [
                 toursCount: 2,
                 tours: [
                     {
-                        id: 10,
+                        id: 12,
                         name: "Рим: Вечный город",
                         price: 1300,
                         duration: 7,
@@ -252,7 +278,7 @@ export const destinationsData = [
                         ]
                     },
                     {
-                        id: 11,
+                        id: 13,
                         name: "Рим: Ватикан и соборы",
                         price: 900,
                         duration: 5,
@@ -274,7 +300,7 @@ export const destinationsData = [
                 toursCount: 1,
                 tours: [
                     {
-                        id: 12,
+                        id: 14,
                         name: "Венеция: Город на воде",
                         price: 1400,
                         duration: 6,
@@ -296,7 +322,7 @@ export const destinationsData = [
                 toursCount: 1,
                 tours: [
                     {
-                        id: 13,
+                        id: 15,
                         name: "Путешествие в Итальянские Альпы",
                         price: 2000,
                         duration: 8,
@@ -330,7 +356,7 @@ export const destinationsData = [
                 toursCount: 1,
                 tours: [
                     {
-                        id: 14,
+                        id: 16,
                         name: "Токио: Город будущего",
                         price: 2200,
                         duration: 9,
@@ -354,7 +380,7 @@ export const destinationsData = [
                 toursCount: 1,
                 tours: [
                     {
-                        id: 15,
+                        id: 17,
                         name: "Киото: Традиционная Япония",
                         price: 1800,
                         duration: 7,
@@ -376,7 +402,7 @@ export const destinationsData = [
                 toursCount: 2,
                 tours: [
                     {
-                        id: 16,
+                        id: 18,
                         name: "Восхождение на гору Фудзи",
                         price: 2500,
                         duration: 5,
@@ -391,7 +417,7 @@ export const destinationsData = [
                         ]
                     },
                     {
-                        id: 17,
+                        id: 19,
                         name: "Озёра Фудзи: Природное великолепие",
                         price: 1200,
                         duration: 4,
@@ -422,7 +448,7 @@ export const destinationsData = [
                 toursCount: 2,
                 tours: [
                     {
-                        id: 18,
+                        id: 20,
                         name: "Рио: Христа-Искупителя и Копакабана",
                         price: 1700,
                         duration: 7,
@@ -435,7 +461,7 @@ export const destinationsData = [
                         reviews: []
                     },
                     {
-                        id: 19,
+                        id: 21,
                         name: "Карнавал в Рио",
                         price: 3000,
                         duration: 10,
@@ -453,106 +479,80 @@ export const destinationsData = [
     },
     {
         id: 7,
-        name: "Франция",
-        description: "Страна любви, вина и изысканной кухни",
-        imageUrl: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200",
-        citiesCount: 3,
+        name: "Индонезия",
+        description: "Райский уголок с уникальной культурой и природой",
+        imageUrl: "https://www.svoiludi.ru/images/tb/4760/indonesia-place-resorts-islands-16957509129871_w687h357.jpg",
+        citiesCount: 1,
         cities: [
             {
                 id: 1,
-                name: "Париж",
-                description: "Город любви, света и романтики с Эйфелевой башней",
-                imageUrl: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200",
-                toursCount: 2,
-                tours: [
-                    {
-                        id: 20,
-                        name: "Париж: Романтика столицы",
-                        price: 1500,
-                        duration: 7,
-                        maxPeople: 12,
-                        rating: 4.9,
-                        reviewsCount: 25,
-                        imageUrl: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200",
-                        description: "Романтическое путешествие по Парижу с посещением Эйфелевой башни, Лувра и Монмартра",
-                        included: ["Проживание в центре", "Завтраки", "Экскурсии", "Трансфер", "Билеты в Лувр"],
-                        reviews: [
-                            { author: "Екатерина М.", date: "2024-03-20", rating: 5, text: "Париж - город мечты! Все было великолепно!" },
-                            { author: "Александр П.", date: "2024-02-10", rating: 4.8, text: "Отличный тур, очень понравилась экскурсия в Лувр." }
-                        ]
-                    },
-                    {
-                        id: 21,
-                        name: "Версаль: Королевская роскошь",
-                        price: 800,
-                        duration: 3,
-                        maxPeople: 15,
-                        rating: 4.8,
-                        reviewsCount: 15,
-                        imageUrl: "https://blog.global-guide.org/wp-content/uploads/2025/01/111-176.jpg",
-                        description: "Экскурсия в знаменитый Версальский дворец и его сады",
-                        included: ["Трансфер", "Гид", "Входные билеты"],
-                        reviews: []
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: "Лазурный берег",
-                description: "Роскошные пляжи и знаменитые курорты",
-                imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Cote-d%27Azur.jpg",
-                toursCount: 2,
+                name: "Бали",
+                description: "Остров богов с бесконечными пляжами и храмами",
+                imageUrl: "https://travelbelka.ru/wp-content/uploads/2020/02/manta-bay-or-kelingking-beach-on-nusa-penida-T8AHWZ6-696x392.jpg",
+                toursCount: 3,
                 tours: [
                     {
                         id: 22,
-                        name: "Лазурный берег: Ницца и Канны",
-                        price: 1800,
-                        duration: 8,
+                        name: "Райский отдых на Бали",
+                        price: 1200,
+                        duration: 10,
                         maxPeople: 10,
-                        rating: 4.9,
-                        reviewsCount: 18,
-                        imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Cote-d%27Azur.jpg",
-                        description: "Отдых на роскошных пляжах Лазурного берега с посещением Ниццы, Канн и Монако",
-                        included: ["Проживание у моря", "Завтраки", "Экскурсии", "Трансфер"],
+                        rating: 4.8,
+                        reviewsCount: 12,
+                        imageUrl: "https://www.ecotour.by/upload/iblock/ee2/bali.jpg",
+                        description: "Незабываемый отдых на райском острове с экскурсиями и спа-процедурами",
+                        included: ["Проживание в отеле 5*", "Завтраки", "Трансфер", "Медицинская страховка", "Экскурсия на вулкан"],
                         reviews: [
-                            { author: "Мария С.", date: "2024-02-25", rating: 5, text: "Невероятная поездка! Монако - сказка!" }
+                            { author: "Анна С.", date: "2024-03-15", rating: 5, text: "Потрясающий отдых! Все было организовано на высшем уровне." },
+                            { author: "Михаил К.", date: "2024-02-10", rating: 4, text: "Очень понравилось, отличные экскурсии." },
+                            { author: "Екатерина В.", date: "2024-01-20", rating: 5, text: "Спа-процедуры - это что-то невероятное!" },
+                            { author: "Дмитрий П.", date: "2023-12-05", rating: 3, text: "Хорошо, но дороговато." },
+                            { author: "Ольга Н.", date: "2023-11-18", rating: 5, text: "Лучший отпуск в моей жизни!" },
+                            { author: "Сергей М.", date: "2023-10-22", rating: 4, text: "Все отлично, только питание однообразное." },
+                            { author: "Наталья Д.", date: "2023-09-30", rating: 5, text: "Восторг! Особенно понравилась экскурсия на вулкан." },
+                            { author: "Алексей И.", date: "2023-08-15", rating: 4.5, text: "Хороший тур, все включено." },
+                            { author: "Ирина С.", date: "2023-07-20", rating: 5, text: "Спасибо за организацию!" },
+                            { author: "Владимир Р.", date: "2023-06-10", rating: 4, text: "Достойный отдых. Цена соответствует качеству." }
                         ]
                     },
                     {
                         id: 23,
-                        name: "Сен-Тропе: Гламурный отдых",
-                        price: 2200,
-                        duration: 7,
+                        name: "Бали: Серфинг и приключения",
+                        price: 1500,
+                        duration: 12,
                         maxPeople: 8,
-                        rating: 5.0,
-                        reviewsCount: 12,
-                        imageUrl: "https://images.unsplash.com/photo-1519045430330-1b7fcbe062e1?w=1200",
-                        description: "VIP-отдых в самом гламурном курорте Франции",
-                        included: ["Вилла", "Завтраки и ужины", "Яхт-тур", "Трансфер", "Страховка"],
-                        reviews: []
-                    }
-                ]
-            },
-            {
-                id: 3,
-                name: "Прованс",
-                description: "Лавандовые поля и уютные деревушки",
-                imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Provence.jpg",
-                toursCount: 1,
-                tours: [
+                        rating: 4.9,
+                        reviewsCount: 10,
+                        imageUrl: "https://www.atorus.ru/sites/default/files/upload/image/SovetyTuristam/4610/8.jpg",
+                        description: "Активный отдых с обучением серфингу и походами в джунгли",
+                        included: ["Проживание", "Завтраки и обеды", "Уроки серфинга", "Трансфер", "Страховка"],
+                        reviews: [
+                            { author: "Денис Л.", date: "2024-03-01", rating: 5, text: "Лучший серфинг в моей жизни!" },
+                            { author: "Алексей Б.", date: "2024-02-15", rating: 4.8, text: "Отличный тур для активных людей." },
+                            { author: "Максим С.", date: "2024-01-10", rating: 5, text: "Наконец-то освоил серфинг!" },
+                            { author: "Антон К.", date: "2023-12-20", rating: 4, text: "Хороший тур, но очень утомительный." },
+                            { author: "Павел Н.", date: "2023-11-05", rating: 5, text: "Невероятные эмоции!" },
+                            { author: "Роман В.", date: "2023-10-12", rating: 4.5, text: "Организация на высоте." },
+                            { author: "Илья Г.", date: "2023-09-08", rating: 5, text: "Мечта сбылась!" },
+                            { author: "Артем Ф.", date: "2023-08-25", rating: 4, text: "Хорошо, но мало свободного времени." },
+                            { author: "Виталий М.", date: "2023-07-14", rating: 5, text: "Лучший активный отдых!" },
+                            { author: "Евгений Т.", date: "2023-06-30", rating: 4.5, text: "Отличный тур, рекомендую!" }
+                        ]
+                    },
                     {
                         id: 24,
-                        name: "Прованс: Лавандовое сердце Франции",
-                        price: 1300,
-                        duration: 6,
+                        name: "Балийские храмы и культура",
+                        price: 1100,
+                        duration: 8,
                         maxPeople: 12,
-                        rating: 4.9,
-                        reviewsCount: 14,
-                        imageUrl: "https://pohcdn.com/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Provence.jpg",
-                        description: "Путешествие по лавандовым полям Прованса с дегустацией вин и сыров",
-                        included: ["Проживание в замке", "Завтраки", "Винные туры", "Трансфер", "Гид"],
+                        rating: 4.7,
+                        reviewsCount: 8,
+                        imageUrl: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200",
+                        description: "Погружение в культуру Бали с посещением главных храмов",
+                        included: ["Проживание", "Завтраки", "Экскурсии", "Трансфер", "Гид"],
                         reviews: [
-                            { author: "Ольга К.", date: "2024-03-05", rating: 5, text: "Лавандовые поля - это что-то невероятное!" }
+                            { author: "Мария К.", date: "2024-02-01", rating: 5, text: "Очень познавательная экскурсия!" },
+                            { author: "Иван П.", date: "2024-01-15", rating: 4.5, text: "Интересно, но много ходьбы." }
                         ]
                     }
                 ]

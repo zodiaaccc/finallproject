@@ -1,20 +1,16 @@
 const FAVORITES_KEY = 'traveland_favorites_tours';
 
-// Храним текущее активное уведомление
 let currentNotification = null;
 
-// Получить избранные туры из localStorage
 export function getFavoriteTours() {
     const favorites = localStorage.getItem(FAVORITES_KEY);
     return favorites ? JSON.parse(favorites) : [];
 }
 
-// Сохранить избранные туры в localStorage
 export function saveFavoriteTours(favorites) {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
 }
 
-// Добавить тур в избранное
 export function addToFavorites(tour) {
     const favorites = getFavoriteTours();
 
@@ -37,7 +33,6 @@ export function addToFavorites(tour) {
     return false;
 }
 
-// Удалить тур из избранного
 export function removeFromFavorites(tourId) {
     let favorites = getFavoriteTours();
     favorites = favorites.filter(item => item.id !== tourId);
@@ -47,13 +42,11 @@ export function removeFromFavorites(tourId) {
     return true;
 }
 
-// Проверить, в избранном ли тур
 export function isFavorite(tourId) {
     const favorites = getFavoriteTours();
     return favorites.some(item => item.id === tourId);
 }
 
-// Обновить кнопку избранного
 export function updateFavoriteButton(tourId, isFav) {
     const buttons = document.querySelectorAll(`.favorite-btn[data-id="${tourId}"]`);
     buttons.forEach(btn => {
@@ -68,7 +61,6 @@ export function updateFavoriteButton(tourId, isFav) {
     });
 }
 
-// Показать уведомление (с удалением предыдущего)
 export function showNotification(message, type = 'success') {
     // Удаляем предыдущее уведомление, если оно есть
     if (currentNotification) {
