@@ -116,7 +116,6 @@
     </div>
 </div>
 
-<!-- Модальное окно бронирования -->
 <div id="bookingModal" class="booking-modal" style="display: none;">
     <div class="booking-modal-content">
         <div class="booking-modal-header">
@@ -174,12 +173,6 @@
                 </ul>
             </div>
         </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2025 Traveland. Все права защищены.</p>
-        </div>
-    </div>
-</footer>
 
         <div class="footer-bottom">
             <p>&copy; 2025 Traveland. Все права защищены.</p>
@@ -293,7 +286,6 @@
             </div>
         `;
 
-        // Обработчик кнопки избранного
         const favDetailBtn = document.getElementById('favoriteDetailBtn');
         if (favDetailBtn) {
             favDetailBtn.onclick = (e) => {
@@ -319,7 +311,6 @@
             };
         }
 
-        // Обработчик отзывов
         if (hasReviews) {
             const showReviewsBtn = document.getElementById('showReviewsBtn');
             const reviewsList = document.getElementById('reviewsList');
@@ -333,7 +324,6 @@
             }
         }
 
-        // Обработчик бронирования
         const modal = document.getElementById('bookingModal');
         const bookBtn = document.getElementById('bookBtn');
         const closeModalBtn = document.querySelector('.booking-modal-close');

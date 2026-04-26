@@ -156,11 +156,16 @@
                     <h3 class="city-name">${city.name}</h3>
                     <p class="city-desc">${city.description}</p>
                     <div class="tour-count">
-                        ${city.toursCount} туров <i class="fas fa-arrow-right"></i>
+                          ${city.toursCount} ${getToursText(city.toursCount)} <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
             </a>
         `).join('');
+    }
+    function getToursText(count) {
+        if (count % 10 === 1 && count % 100 !== 11) return 'тур';
+        if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20)) return 'тура';
+        return 'туров';
     }
 
     renderCities();
